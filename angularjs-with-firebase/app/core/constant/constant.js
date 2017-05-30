@@ -1,0 +1,1 @@
+﻿app.constant('ngSettings', { serviceBaseUri: "http://localhost:8000/api/" });

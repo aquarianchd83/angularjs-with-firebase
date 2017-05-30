@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title></title>
+
+    <link rel="stylesheet" type="text/css" href="app/assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="app/assets/css/app.css">
+
+    <script src="app/assets/lib/jquery-2.0.3.min.js"></script>
+    <script src="app/assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="app/assets/lib/angular.js"></script>
+
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/3.6.6/firebase.js"></script>
+
+    <!-- AngularFire -->
+    <script src="https://cdn.firebase.com/libs/angularfire/2.3.0/angularfire.min.js"></script>
+
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyBi9GItI8XWcXEX54dgmH2SKQsDWyZLdoA",
+            authDomain: "angularjs-demo-11570.firebaseapp.com",
+            databaseURL: "https://angularjs-demo-11570.firebaseio.com",
+            projectId: "angularjs-demo-11570",
+            storageBucket: "angularjs-demo-11570.appspot.com",
+            messagingSenderId: "902914030574"
+        };
+        firebase.initializeApp(config);
+    </script>
+
+</head>
+<body data-ng-app="taskApp">
+    <div class="container">
+        <div id="wrapper" class="wrapper clearfix">
+            <div ui-view="header"></div>
+            <div ui-view="content"></div>
+            <div ui-view="footer"></div>
+        </div>
+    </div>
+
+
+    <script src="app/assets/lib/angular-route.js"></script>
+    <script src="app/assets/lib/angular-local-storage.min.js"></script>
+    <script src="app/assets/lib/angular-sanitize.min.js"></script>
+    <script src="app/assets/lib/angular-animate.min.js"></script>
+    <script src="app/assets/lib/angular-aria.min.js"></script>
+    <script src="app/assets/lib/angular-material.min.js"></script>
+    <script src="app/assets/lib/angular-ui-router.min.js"></script>
+    <script src="app/assets/lib/ui-bootstrap-tpls-1.1.2.min.js"></script>
+    <script src="app/assets/lib/jquery-ui.js"></script>
+    <!--<script src="lib/ngMask.min.js"></script>-->
+
+    <!-- Load app main script -->
+    <script src="app/config/app.js"></script>
+    <script src="app/config/route.js"></script>
+    <script src="app/config/run.js"></script>
+
+    <script src="app/core/services/responseSvc.js"></script>
+    <script src="app/core/services/commonSvc.js"></script>
+    <script src="app/core/services/notificationSvc.js"></script>
+    <script src="app/core/services/authInterceptorSvc.js"></script>
+    <script src="app/core/constant/constant.js"></script>
+
+    <script src="app/component/account/account-module.js"></script>
+    <script src="app/component/account/account-service.js"></script>
+    <script src="app/component/account/account-ctrl.js"></script>
+
+    <script src="app/component/post/post-module.js"></script>
+    <script src="app/component/post/post-service.js"></script>
+    <script src="app/component/post/post-ctrl.js"></script>
+
+    <script src="app/component/layout/layout-module.js"></script>
+    <script src="app/component/layout/layout-ctrl.js"></script>
+
+
+</body>
+</html>

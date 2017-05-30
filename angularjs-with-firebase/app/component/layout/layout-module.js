@@ -1,0 +1,1 @@
+﻿var authenticatedHeader = angular.module("authenticatedHeader", []);
