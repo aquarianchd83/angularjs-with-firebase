@@ -16,16 +16,16 @@ function ($scope,
           ) {
 
     $scope.user = {
-        email: 'harishchief@gmail.com',
-        password: 'asd@123A'
+        email: '',
+        password: ''
     };
 
     $scope.login = function () {
 
         if ($scope.user.email && $scope.user.password) {
 
-            accountSvc.login($scope.user.email, $scope.user.password).then(function () {
-                commonSvc.setUser($scope.user.email);
+            accountSvc.login($scope.user.email, $scope.user.password).then(function (response) {
+                commonSvc.setUser({ id: response.uid, email: $scope.user.email });
                 $state.go("posts");
             }).catch(function (error) {
                 $scope.errMsg = true;

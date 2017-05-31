@@ -1,13 +1,13 @@
-﻿<div class="container">
-	<div class="row" ng-repeat="article in articles">
+﻿<div class="container" ng-init="loadArticles()">
+	<div class="row" ng-repeat="(key, article) in articles">
 		<div class="col-md-12 well well-sm">
 			<h4>{{article.title}}</h4>
 			<p>{{article.post}}</p>
-			<button type="submit" class="btn btn-sm btn-primary" ng-click="editPost(article.$id)" data-target="#editModal" data-toggle="modal">Edit</button>
-			<button type="submit" class="btn btn-sm btn-danger" ng-click="deleteCnf(article)" data-target="#deleteModal" data-toggle="modal">Delete</button>
+			<button type="submit" class="btn btn-sm btn-primary" ng-click="editPost(key)" data-target="#editModal" data-toggle="modal">Edit</button>
+			<button type="submit" class="btn btn-sm btn-danger" ng-click="deleteCnf(key)" data-target="#deleteModal" data-toggle="modal">Delete</button>
 		</div>
 	</div>
-    <div class="row" ng-show="articles.length==0">
+    <div class="row" ng-show="articles==null">
 		<div class="col-md-12 well well-sm">
 			No post has been submitted
 		</div>

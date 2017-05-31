@@ -14,11 +14,19 @@ function ($scope,
         postTxt: ""
     };
 
-    $scope.articles = postSvc.getAll();
+
+    $scope.loadArticles = function () {
+        postSvc.getAll(commonSvc.getUser().id).then(function (data) {
+            $scope.articles = data;
+        });
+    }
+
+
+   
 
     $scope.createPost = function () {
 
-        postSvc.create($scope.article).then(function (ref) {
+        postSvc.create(commonSvc.getUser().id, $scope.article).then(function (ref) {
             $scope.success = true;
             window.setTimeout(function () {
                 $scope.$apply(function () {
@@ -41,18 +49,21 @@ function ($scope,
         postSvc.updatePost(id, $scope.editPostData).then(function (ref) {
             $scope.$apply(function () {
                 $("#editModal").modal('hide');
+                $scope.loadArticles();
             });
         }, function (error) {
             console.log(error);
         });
     };
 
-    $scope.deleteCnf = function (article) {
-        $scope.deleteArticle = article;
+    $scope.deleteCnf = function (id) {
+        $scope.deleteArticle = id;
     };
 
-    $scope.deletePost = function (deleteArticle) {
-        $scope.articles.$remove(deleteArticle);
+    $scope.deletePost = function (id) {
+
+        postSvc.deletePost(id);
+        $scope.loadArticles();
         $("#deleteModal").modal('hide');
     };
 }]);

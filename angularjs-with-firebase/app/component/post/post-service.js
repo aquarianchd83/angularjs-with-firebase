@@ -1,22 +1,36 @@
 ﻿'use strict';
 post.factory('postSvc', ['$firebaseArray',
                           '$firebaseObject',
+                          '$q',
 
  function ($firebaseArray,
-          $firebaseObject) {
+          $firebaseObject,
+          $q) {
 
 
      return {
-         getAll: function () {
-             var ref = firebase.database().ref().child('Articles');
-             return $firebaseArray(ref);
+
+         getAll: function (createdBy) {
+
+             var deferred = $q.defer();
+
+             var ref = new firebase.database().ref('Articles').orderByChild("createdBy").equalTo(createdBy);
+
+             ref.on('value', function (snap) {
+                 deferred.resolve(snap.val());
+             });
+
+             return deferred.promise;
          },
 
-         create: function (article) {
-             var articles = this.getAll();
+         create: function (createdBy, article) {
+
+             var ref = firebase.database().ref().child('Articles');
+             var articles = $firebaseArray(ref);
              return articles.$add({
                  title: article.titleTxt,
-                 post: article.postTxt
+                 post: article.postTxt,
+                 createdBy: createdBy
              });
          },
 
@@ -31,7 +45,14 @@ post.factory('postSvc', ['$firebaseArray',
                  title: article.title,
                  post: article.post
              });
+         },
+
+         deletePost: function (id) {
+             var ref = firebase.database().ref().child('Articles/' + id);
+             ref.remove();
          }
 
      };
  }]);
+
+ 

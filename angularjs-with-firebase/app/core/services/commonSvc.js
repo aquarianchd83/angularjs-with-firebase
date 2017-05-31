@@ -1,25 +1,33 @@
 ﻿'use strict';
 
 // This service contain the shared methods
-app.service('commonSvc', ['$firebaseAuth', '$state', function ($firebaseAuth, $state) {
+app.service('commonSvc', ['$firebaseAuth', '$state', 'localStorageService',
+ function ($firebaseAuth,
+           $state,
+           localStorageSvc)
+ {
     var user = "";
     var auth = $firebaseAuth();
 
     return {
         getUser: function () {
+
+            return localStorageSvc.get('authorizationData');
+
+
             if (user == "") {
-                user = localStorage.getItem("userEmail");
+                user = localStorage.getItem("user");
             }
             return user;
         },
         setUser: function (value) {
-            localStorage.setItem("userEmail", value);
+            localStorageSvc.set("authorizationData", value);
             user = value;
         },
         logoutUser: function () {
             auth.$signOut();
             user = "";
-            localStorage.removeItem('userEmail');
+            localStorageSvc.remove('authorizationData');
             $state.go("login");
         }
     };

@@ -5,9 +5,5 @@
                                            'post',
 'firebase',
 'authenticatedHeader']);
-
-app.config(function ($httpProvider) {
-    $httpProvider.interceptors.push('authInterceptorSvc');
-});
-
+ 
 
